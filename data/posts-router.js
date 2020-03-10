@@ -53,6 +53,7 @@ router.get("/:id/comments", (req, res) => {
       res.json(comment);
     })
     .catch((err) => {
+      console.log(err);
       res
         .status(500)
         .json({ error: "The comments information could not be retrieved" });
@@ -83,8 +84,9 @@ router.post("/", (req, res) => {
 });
 
 router.post("/:id/comments", (req, res) => {
-  const id = req.params.id;
+  const postId = req.params.id;
   const userComment = req.body;
+  userComment.post_id = postId;
   console.log(userComment);
 
   if (!userComment.text) {
