@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import PostForms from "./PostForms";
+
 const Posts = () => {
   const [posts, setPosts] = useState([]);
 
@@ -21,15 +23,8 @@ const Posts = () => {
   return (
     <div>
       <h1>Posts</h1>
-      <div className="posts-container">
-        {posts.map((post) => (
-          <div className="post-card">
-            <h3> Title: {post.title} </h3>
-            <h4> {post.contents} </h4>
-            <p> created at: {post.created_at} </p>
-          </div>
-        ))}
-      </div>
+
+      <PostForms posts={posts} updatePosts={setPosts} fetchPosts={fetchPosts} />
     </div>
   );
 };

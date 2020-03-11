@@ -70,7 +70,7 @@ router.post("/", (req, res) => {
       errorMessage: "Please provide title and contents for the post."
     });
   } else {
-    Post.insert(req.body)
+    Post.insert(userPost)
       .then((posts) => {
         res.status(201).json(posts);
       })
