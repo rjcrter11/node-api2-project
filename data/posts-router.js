@@ -40,8 +40,6 @@ router.get("/:id", (req, res) => {
 
 router.get("/:id/comments", (req, res) => {
   const postId = req.params.id;
-  const body = req.body;
-  console.log(body);
 
   Post.findPostComments(postId)
     .then((comment) => {
@@ -84,10 +82,7 @@ router.post("/", (req, res) => {
 });
 
 router.post("/:id/comments", (req, res) => {
-  const postId = req.params.id;
-  const userComment = req.body;
-  userComment.post_id = postId;
-  console.log(userComment);
+  const userComment = { ...req.body, post_id: req.params.id };
 
   if (!userComment.text) {
     res
