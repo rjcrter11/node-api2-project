@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/", (req, res) => {
   Post.find(req.query)
     .then((posts) => {
-      res.status(200).json(posts);
+      res.status(200).json({ motd: process.env.MOTD, posts });
     })
     .catch((error) => {
       console.log(error);
